@@ -1,29 +1,40 @@
-// Defining a Constructor Function
+var Employee = (function(){
 
-function Employee (name, age, designation) {
-    this.name = name;
-    this.age = age;
-    this.designation = designation;
-}
+    var name = "Mayank";
+    var salary = 0;
+    var tax = 0;
   
-Employee.prototype.showDetails = function() { 
-      console.log("Name: " + this.name + " Age: " + this.age);
-}
+    function setDetails(name, salary, tax) {
+      name = name;
+      salary = salary;
+      tax = tax;
+    };
   
-Employee.prototype.showName = function() {
-    console.log("Name: " + this.name);
-}
+  
+    function getDetails(name, salary, tax) {
+      console.log(name + salary + tax);
+    };
+  
+    function calculateBonus() {
+      return salary * .1;
+    }
+  
+    function netSalary() {
+      return salary + (salary * .14);
+    }
+  
+    return {
+      name: name,
+      getDetails: getDetails,
+      setDetails: setDetails,
+      calculateBonus: calculateBonus,
+      netSalary: netSalary
+    }
+  
+})();
 
-Employee.prototype.showDesignation = function() {
-    console.log("Name: " + this.designation);
-}
 
-var myEmployee = new Employee("Mayank", 28, "Developer");
-var myEmployeeOne = new Employee("Mayank", 28, "Developer");
-var myEmployeeTwo = new Employee("Mayank", 28, "Developer");
+alert(Employee.getDetails());
 
-myEmployee.showName();
-
-myEmployeeOne.showName();
-
-myEmployeeTwo.showName();
+// Accessing the following property shall give user an Error bcoz its local to the block.
+console.log(Employee.salary);
